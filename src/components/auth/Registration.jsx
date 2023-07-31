@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 
-
 const Registration = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -20,9 +19,10 @@ const Registration = () => {
             return;
         }
 
+        // Create user and store details to firestore
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                console.log(userCredentials);
+                // console.log(userCredentials);
 
                 let obj = {
                     firstName: firstName,
@@ -31,12 +31,18 @@ const Registration = () => {
                     password: password,
                     confirmPassword: confirmPassword,
                 };
-
+                // add user details to Users collection in Firestore
                 const docRef = doc(collection(db, "Users"));
                 return setDoc(docRef, obj);
             })
             .then(() => {
                 console.log("User data stored in Firestore");
+                // Clear the form fields
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
             })
             .catch((error) => {
                 console.log(error);
@@ -96,7 +102,7 @@ const Registration = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <br />
-                <button type="submit" id="registerBtn">
+                <button type="submit">
                     Submit
                 </button>
             </form>
