@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../../firebase";
+import { doc, collection, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 
 
 const Registration = () => {
@@ -10,11 +11,32 @@ const Registration = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const createUser = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Check if passwords match 
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
                 console.log(userCredentials);
+
+                let obj = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword,
+                };
+
+                const docRef = doc(collection(db, "Users"));
+                return setDoc(docRef, obj);
+            })
+            .then(() => {
+                console.log("User data stored in Firestore");
             })
             .catch((error) => {
                 console.log(error);
@@ -23,7 +45,7 @@ const Registration = () => {
 
     return (
         <div className="registrationContainer">
-            <form onSubmit={createUser}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name: </label>
                 <input
                     id="firstName"
