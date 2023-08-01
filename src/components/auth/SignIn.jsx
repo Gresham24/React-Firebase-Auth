@@ -19,7 +19,7 @@ const SignIn = () => {
             })
             .catch((error) => {
               alert("User not found. Pls pls try again");
-                // console.log(error.message);
+                console.log(error.message);
             });
     };
     return (
