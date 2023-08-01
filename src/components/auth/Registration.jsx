@@ -13,7 +13,7 @@ const Registration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if passwords match 
+        // Check if passwords match
         if (password !== confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -22,7 +22,7 @@ const Registration = () => {
         // Create user and store details to firestore
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                // console.log(userCredentials);
+                console.log(userCredentials);
 
                 let obj = {
                     firstName: firstName,
@@ -51,6 +51,7 @@ const Registration = () => {
 
     return (
         <div className="registrationContainer">
+            <h1>Registration</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name: </label>
                 <input
@@ -61,7 +62,6 @@ const Registration = () => {
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                 />
-                <br />
                 <label htmlFor="lastName">Last Name: </label>
                 <input
                     id="lastName"
@@ -71,7 +71,6 @@ const Registration = () => {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                 />
-                <br />
                 <label htmlFor="email">Email: </label>
                 <input
                     id="email"
@@ -81,7 +80,6 @@ const Registration = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <br />
                 <label htmlFor="password">Password </label>
                 <input
                     id="password"
@@ -91,7 +89,6 @@ const Registration = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <br />
                 <label htmlFor="confirmPassword">Confirm Password </label>
                 <input
                     id="confirmPassword"
@@ -101,10 +98,7 @@ const Registration = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-                <br />
-                <button type="submit">
-                    Submit
-                </button>
+                <button type="submit">Submit</button>
             </form>
         </div>
     );
