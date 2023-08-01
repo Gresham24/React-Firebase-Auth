@@ -18,7 +18,8 @@ const SignIn = () => {
                 setPassword("");
             })
             .catch((error) => {
-                console.log(error.message);
+              alert("User not found. Pls pls try again");
+                // console.log(error.message);
             });
     };
     return (
