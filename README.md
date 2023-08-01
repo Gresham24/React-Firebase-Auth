@@ -14,4 +14,4 @@ This is a simple example of user authentication. Main functionality is:
 
 
 # Hosted Link:
-[react-firebase-auth](#) - coming soon
+[react-firebase-auth](https://react-firebase-authen.netlify.app/)
