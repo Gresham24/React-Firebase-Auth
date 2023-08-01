@@ -9,11 +9,17 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth, email, password).then(
-            (userCredentials) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredentials) => {
                 console.log(userCredentials);
-            }
-        );
+            })
+            .then(() => {
+                setEmail("");
+                setPassword("");
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
     };
     return (
         <div className="signInContainer">
