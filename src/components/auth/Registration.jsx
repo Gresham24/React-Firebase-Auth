@@ -2,6 +2,8 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
+import { sendEmailVerification } from "firebase/auth";
+
 
 const Registration = () => {
     const [firstName, setFirstName] = useState("");
@@ -20,33 +22,38 @@ const Registration = () => {
         }
 
         // Create user and store details to firestore
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredentials) => {
-                console.log(userCredentials);
-
-                let obj = {
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password,
-                    confirmPassword: confirmPassword,
-                };
-                // add user details to Users collection in Firestore
-                const docRef = doc(collection(db, "Users"));
-                return setDoc(docRef, obj);
-            })
-            .then(() => {
-                console.log("User data stored in Firestore");
-                // Clear the form fields
-                setFirstName("");
-                setLastName("");
-                setEmail("");
-                setPassword("");
-                setConfirmPassword("");
-            })
-            .catch((error) => {
-                console.log(error);
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+            // Send email verification
+            sendEmailVerification(userCredentials.user).then(() => {
+                console.log("Email verification sent!");
             });
+
+            let obj = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+            };
+
+            // Add user details to Users collection in Firestore
+            const docRef = doc(
+                collection(db, "Users"),
+                userCredentials.user.uid
+            ); // Use UID as document ID
+            return setDoc(docRef, obj);
+        })
+        .then(() => {
+            console.log("User data stored in Firestore");
+            // Clear the form fields
+            setFirstName("");
+            setLastName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     };
 
     return (
