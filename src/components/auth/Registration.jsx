@@ -26,7 +26,7 @@ const Registration = () => {
         .then((userCredentials) => {
             // Send email verification
             sendEmailVerification(userCredentials.user).then(() => {
-                console.log("Email verification sent!");
+                alert("Email verification sent!");
             });
 
             let obj = {
@@ -52,7 +52,7 @@ const Registration = () => {
             setConfirmPassword("");
         })
         .catch((error) => {
-            console.log(error);
+            alert(error);
         });
     };
 
