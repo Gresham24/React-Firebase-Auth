@@ -11,15 +11,24 @@ const SignIn = () => {
 
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
+              if (userCredentials.user.emailVerified) {
+                console.log("Email is verified");
                 console.log(userCredentials);
+                    // Continue with the login process
+                } else {
+                    console.log("Email is not verified");
+                    alert(
+                        "Account not verified. Please follow the verification link in your emails"
+                    );
+                }
             })
             .then(() => {
                 setEmail("");
                 setPassword("");
             })
             .catch((error) => {
-              alert("User not found. Pls pls try again");
-                console.log(error.message);
+              console.log(error.message);
+                alert(error.message);
             });
     };
     return (
