@@ -4,7 +4,6 @@ import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { sendEmailVerification } from "firebase/auth";
 
-
 const Registration = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
