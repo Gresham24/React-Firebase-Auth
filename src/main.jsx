@@ -4,13 +4,18 @@ import Registration from "./components/auth/Registration.jsx";
 import SignIn from "./components/auth/SignIn.jsx";
 import LogoutButton from "./components/auth/SignOut.jsx";
 import AuthProvider from "./components/auth/AuthContext.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from "./components/Pages/Homepage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
+    <Router>
         <AuthProvider>
-            <Registration />
-            <SignIn />
-            <LogoutButton />
+            <Routes>
+                <Route exact path="/" Component={Homepage} />
+                <Route path="/registration" Component={Registration} />
+                <Route path="/signin" Component={SignIn} />
+            </Routes>
+                {/* <LogoutButton /> */}
         </AuthProvider>
-    </React.StrictMode>
+    </Router>
 );
