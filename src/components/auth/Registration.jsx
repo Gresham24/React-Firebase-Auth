@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { sendEmailVerification } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const Registration = () => {
     const [firstName, setFirstName] = useState("");
@@ -106,6 +107,7 @@ const Registration = () => {
                 />
                 <button type="submit">Submit</button>
             </form>
+            <div>Already have an account? <Link to="/signin">Sign-in</Link> </div>
         </div>
     );
 };
