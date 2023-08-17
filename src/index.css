@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 
-h1 {
+h1, p {
     text-align: center;
 }
 
 .registrationContainer,
-.signInContainer {
+.signInContainer,
+.resetPasswordContainer {
     border: 2px solid black;
     padding: 0 20px 20px 20px;
     width: 350px;
