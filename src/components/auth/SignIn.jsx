@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Link } from "react-router-dom";
-// import { onAuthStateChanged } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,13 +14,13 @@ const SignIn = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
                 if (userCredentials.user.emailVerified) {
-                    console.log("Email is verified");
                     console.log(userCredentials);
                     // Continue with the login process
+                    navigate("/dashboard");
                 } else {
                     console.log("Email is not verified");
                     alert(
-                        "Account not verified. Please follow the verification link in your emails"
+                        "Account not verified. Verify your email in your profile"
                     );
                 }
             })
