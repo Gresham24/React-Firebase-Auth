@@ -19,7 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/forgotpassword" Component={ForgotPassword} />
                 <Route path="/dashboard" Component={Dashboard} />
             </Routes>
-            <LogoutButton />
         </AuthProvider>
     </Router>
 );
