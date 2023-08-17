@@ -7,6 +7,7 @@ import AuthProvider from "./components/auth/AuthContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./components/Pages/Homepage.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
+import Dashboard from "./components/pages/Dashboard.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
@@ -16,8 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/registration" Component={Registration} />
                 <Route path="/signin" Component={SignIn} />
                 <Route path="/forgotpassword" Component={ForgotPassword} />
+                <Route path="/dashboard" Component={Dashboard} />
             </Routes>
-            {/* <LogoutButton /> */}
+            <LogoutButton />
         </AuthProvider>
     </Router>
 );
