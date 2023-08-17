@@ -12,9 +12,9 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(user);
             // Log the current user object to the console
             if (user) {
-                console.log("User signed in:", user.email);
+                console.log("User state: signed in as", user.email);
             } else {
-                console.log("User signed out");
+                console.log("User state: signed out");
             }
         });
 
