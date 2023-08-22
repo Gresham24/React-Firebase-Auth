@@ -1,8 +1,14 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Welcome() {
+  const navigate = useNavigate()
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/about");
+  }
     return (
         <>
             <h1>Welcome</h1>
@@ -13,7 +19,7 @@ function Welcome() {
                 nesciunt maxime! Amet maiores asperiores iusto dolor.
             </p>
             <p>Page 1/3</p>
-            <button type="submit">Next</button>
+            <button type="button" onClick={handleSubmit}>Next</button>
         </>
     );
 }
