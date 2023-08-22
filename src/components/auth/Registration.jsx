@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { sendEmailVerification } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
     const [firstName, setFirstName] = useState("");
@@ -11,6 +11,7 @@ const Registration = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,6 +51,7 @@ const Registration = () => {
             setEmail("");
             setPassword("");
             setConfirmPassword("");
+            navigate("/welcome");
         })
         .catch((error) => {
             alert(error);

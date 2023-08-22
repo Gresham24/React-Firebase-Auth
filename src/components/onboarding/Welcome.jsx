@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Welcome() {
     return (
         <>
@@ -10,6 +11,7 @@ function Welcome() {
                 odio voluptatem suscipit dolorem rerum provident<br></br>{" "}
                 nesciunt maxime! Amet maiores asperiores iusto dolor.
             </p>
+            <button type="submit">Next</button>
         </>
     );
 }
