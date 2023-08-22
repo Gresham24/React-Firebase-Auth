@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Welcome() {
@@ -11,6 +12,7 @@ function Welcome() {
                 odio voluptatem suscipit dolorem rerum provident<br></br>{" "}
                 nesciunt maxime! Amet maiores asperiores iusto dolor.
             </p>
+            <p>Page 1/3</p>
             <button type="submit">Next</button>
         </>
     );
