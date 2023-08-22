@@ -15,18 +15,18 @@ const SignIn = () => {
             .then((userCredentials) => {
                 if (userCredentials.user.emailVerified) {
                     console.log(userCredentials);
-                    // Continue with the login process
-                    navigate("/dashboard");
                 } else {
                     console.log("Email is not verified");
-                    alert(
-                        "Account not verified. Verify your email in your profile"
-                    );
+                    // alert(
+                    //     "Account not verified. Verify your email in your profile"
+                    // );
                 }
             })
             .then(() => {
                 setEmail("");
                 setPassword("");
+                // Continue with the login process
+                navigate("/dashboard");
             })
             .catch((error) => {
                 console.log(error.message);
@@ -37,20 +37,20 @@ const SignIn = () => {
         <div className="signInContainer">
             <h1>Sign in</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="mail">Email: </label>
+                <label htmlFor="email">Email: </label>
                 <input
-                    id="mail"
+                    id="email"
                     type="email"
-                    name="mail"
+                    name="email"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                <label htmlFor="passw">Password </label>
+                <label htmlFor="password">Password </label>
                 <input
-                    id="passw"
+                    id="password"
                     type="password"
-                    name="passw"
+                    name="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -62,8 +62,7 @@ const SignIn = () => {
                 <Link to="/registration">Create account</Link>{" "}
             </div>
             <div>
-                Forgot password?{" "}
-                <Link to="/forgotpassword">Reset</Link>{" "}
+                Forgot password? <Link to="/forgotpassword">Reset</Link>{" "}
             </div>
         </div>
     );
