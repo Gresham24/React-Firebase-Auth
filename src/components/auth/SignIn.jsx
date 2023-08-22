@@ -17,9 +17,6 @@ const SignIn = () => {
                     console.log(userCredentials);
                 } else {
                     console.log("Email is not verified");
-                    // alert(
-                    //     "Account not verified. Verify your email in your profile"
-                    // );
                 }
             })
             .then(() => {
