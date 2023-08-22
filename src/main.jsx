@@ -8,6 +8,7 @@ import Homepage from "./components/pages/Homepage.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
 import Dashboard from "./components/pages/Dashboard.jsx";
 import Welcome from "./components/onboarding/Welcome.jsx";
+import About from "./components/onboarding/About.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/forgotpassword" Component={ForgotPassword} />
                 <Route path="/dashboard" Component={Dashboard} />
                 <Route path="/welcome" Component={Welcome} />
+                <Route path="/about" Component={About} />
             </Routes>
         </AuthProvider>
     </Router>
