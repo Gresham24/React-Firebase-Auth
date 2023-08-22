@@ -1,6 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+/* 
+To Do:
+- add restriction/logic that only users who are signing in for the first time should be able to access onboarding pages
+- 
+
+*/
 
 function Welcome() {
   const navigate = useNavigate()
