@@ -4,7 +4,7 @@ import Registration from "./components/auth/Registration.jsx";
 import SignIn from "./components/auth/SignIn.jsx";
 import AuthProvider from "./components/auth/AuthContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Homepage from "./components/Pages/Homepage.jsx";
+import Homepage from "./components/pages/Homepage.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
 import Dashboard from "./components/pages/Dashboard.jsx";
 
