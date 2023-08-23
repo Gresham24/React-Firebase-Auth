@@ -5,11 +5,28 @@ import { auth, db } from "../../firebase";
 import { AuthContext } from "../auth/AuthContext";
 
 function About() {
+    const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [city, setCity] = useState("");
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        navigate("/userdetails");
+
+        const user = auth.currentUser;
+
+        if (!user) {
+            console.log("No user is currently signed in");
+            return;
+        }
+
+        const docRef = doc(collection(db, "Users"), currentUser.uid);
+
+        try {
+            await setDoc(docRef, { city }, { merge: true });
+            navigate("/userdetails");
+        } catch (error) {
+            alert("Error saving city: ", error);
+        }
     };
 
     return (
@@ -20,15 +37,15 @@ function About() {
                 et id magni odio
             </p>
             <div className="aboutContainer">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
                         id="city"
                         name="city"
                         placeholder="City"
-                        // value={city}
-                        // onChange={(e) => setCity(e.target.value)}
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
                     />
                     <button type="submit">Save</button>
                 </form>
