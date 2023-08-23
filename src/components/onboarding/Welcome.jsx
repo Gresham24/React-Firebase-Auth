@@ -12,25 +12,35 @@ To Do:
 */
 
 function Welcome() {
+    // Access the current user from the `AuthContext`
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const [companyName, setCompanyName] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        // Get the current user from Firebase Auth
         const user = auth.currentUser;
 
+        // Check if a user is signed in
         if (!user) {
             console.error("No user is currently signed in");
             return;
         }
 
+        // Create a document reference to the user's document in the `Users` collection in Firestore
         const docRef = doc(collection(db, "Users"), currentUser.uid);
 
         try {
+            // Attempt to save/update the company name in the Firestore document
+            // The `merge` option ensures that only the provided fields are updated without overwriting existing fields
             await setDoc(docRef, { companyName }, { merge: true });
+
+            // If successful, navigate to the "/about" route
             navigate("/about");
         } catch (error) {
+            // Log any errors that occur during the Firestore operation
             console.error("Error saving company name: ", error);
         }
     };
