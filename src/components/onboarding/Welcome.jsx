@@ -41,7 +41,7 @@ function Welcome() {
             navigate("/about");
         } catch (error) {
             // Log any errors that occur during the Firestore operation
-            console.error("Error saving company name: ", error);
+            alert("Error saving company name: ", error);
         }
     };
 
