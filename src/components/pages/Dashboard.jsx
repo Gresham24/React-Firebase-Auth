@@ -3,6 +3,8 @@ import { AuthContext } from "../auth/AuthContext";
 import LogoutButton from "../auth/SignOut";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Dashboard() {
     const { currentUser } = useContext(AuthContext); // use the useContext hook to access the AuthContext
@@ -28,6 +30,14 @@ function Dashboard() {
 
     return (
         <>
+            <p>
+                {" "}
+                <i>
+                    Email not verified. Click{" "}
+                    <Link to="/registration">here</Link> to resend a
+                    verification link
+                </i>{" "}
+            </p>
             <h1>Dashboard</h1>
             {currentUser ? (
                 <p>
