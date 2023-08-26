@@ -13,7 +13,7 @@ function UserDetails() {
         event.preventDefault();
 
         const user = auth.currentUser;
- 
+
         if (!user) {
             console.log("No user is currently signed in");
             return;
@@ -31,10 +31,10 @@ function UserDetails() {
 
     return (
         <>
+            <h1>Contact Information:</h1>
             <div className="userDetailsContainer">
-                <h1>Contact Information:</h1>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="phoneNumber"></label>
+                    <label htmlFor="phoneNumber">Contact Number</label>
                     <input
                         type="number"
                         id="contactNum"
