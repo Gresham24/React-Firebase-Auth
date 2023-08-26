@@ -3,17 +3,19 @@ import { AuthContext } from "../auth/AuthContext";
 import LogoutButton from "../auth/SignOut";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
-
+import { sendEmailVerification } from "firebase/auth";
 
 function Dashboard() {
     const { currentUser } = useContext(AuthContext); // use the useContext hook to access the AuthContext
     const [userDetails, setUserDetails] = useState(null);
 
+    const { email, emailVerified, uid } = currentUser || {}; // Destructuring with a fallback
+
     useEffect(() => {
-        if (currentUser) {
+        if (uid) {
+            // Using destructured uid
             // Fetch the user details from Firestore using the already initialized db
-            const docRef = doc(db, "Users", currentUser.uid);
+            const docRef = doc(db, "Users", uid);
             getDoc(docRef)
                 .then((docSnap) => {
                     if (docSnap.exists()) {
@@ -23,25 +25,56 @@ function Dashboard() {
                     }
                 })
                 .catch((error) => {
-                    console.log("Error getting document:", error);
+                    console.error("Error getting document:", error); // Enhanced error logging
                 });
         }
-    }, [currentUser]);
+
+        // Cleanup (no specific cleanup for now, but this is where you'd handle it if needed)
+        // return () => {
+        //     // Cleanup tasks here
+        // }
+    }, [uid]); // Using destructured uid as a dependency
+
+    const resendVerificationEmail = () => {
+        if (currentUser) {
+            sendEmailVerification(currentUser)
+                .then(() => {
+                    alert("Verification email sent!");
+                })
+                .catch((error) => {
+                    console.error("Error sending verification email:", error);
+                });
+        }
+    };
 
     return (
         <>
-            <p>
-                {" "}
-                <i>
-                    Email not verified. Click{" "}
-                    <Link to="/registration">here</Link> to resend a
-                    verification link
-                </i>{" "}
-            </p>
-            <h1>Dashboard</h1>
-            {currentUser ? (
+            {!emailVerified && (
                 <p>
-                    <strong>Email:</strong> {currentUser.email}
+                    <i>
+                        Account not verified. Click{" "}
+                        <button
+                            style={{
+                                color: "red",
+                                textAlign: "center",
+                                textDecoration: "none",
+                                fontSize: "16px",
+                                cursor: "pointer",
+                                border: "none",
+                            }
+                        }
+                            onClick={resendVerificationEmail}
+                        >
+                            here
+                        </button>{" "}
+                        to resend a verification link.
+                    </i>
+                </p>
+            )}
+            <h1>Dashboard</h1>
+            {email ? ( // Using destructured email
+                <p>
+                    <strong>Email:</strong> {email}
                 </p>
             ) : (
                 <p>Loading user details...</p>
