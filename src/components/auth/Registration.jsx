@@ -23,39 +23,39 @@ const Registration = () => {
         }
 
         // Create user and store details to firestore
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredentials) => {
-            // Send email verification
-            sendEmailVerification(userCredentials.user).then(() => {
-                alert("Email verification sent!");
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredentials) => {
+                // Send email verification
+                sendEmailVerification(userCredentials.user).then(() => {
+                    alert("Email verification sent!");
+                });
+
+                let obj = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                };
+
+                // Add user details to Users collection in Firestore
+                const docRef = doc(
+                    collection(db, "Users"),
+                    userCredentials.user.uid
+                ); // Use UID as document ID
+                return setDoc(docRef, obj);
+            })
+            .then(() => {
+                console.log("User data stored in Firestore");
+                // Clear the form fields
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                navigate("/welcome");
+            })
+            .catch((error) => {
+                alert(error);
             });
-
-            let obj = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-            };
-
-            // Add user details to Users collection in Firestore
-            const docRef = doc(
-                collection(db, "Users"),
-                userCredentials.user.uid
-            ); // Use UID as document ID
-            return setDoc(docRef, obj);
-        })
-        .then(() => {
-            console.log("User data stored in Firestore");
-            // Clear the form fields
-            setFirstName("");
-            setLastName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-            navigate("/welcome");
-        })
-        .catch((error) => {
-            alert(error);
-        });
     };
 
     return (
@@ -109,7 +109,9 @@ const Registration = () => {
                 />
                 <button type="submit">Create account</button>
             </form>
-            <div>Already have an account? <Link to="/signin">Sign-in</Link> </div>
+            <div>
+                Already have an account? <Link to="/signin">Sign-in</Link>{" "}
+            </div>
         </div>
     );
 };

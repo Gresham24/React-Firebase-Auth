@@ -13,7 +13,6 @@ function Dashboard() {
 
     useEffect(() => {
         if (uid) {
-            // Using destructured uid
             // Fetch the user details from Firestore using the already initialized db
             const docRef = doc(db, "Users", uid);
             getDoc(docRef)
@@ -25,15 +24,10 @@ function Dashboard() {
                     }
                 })
                 .catch((error) => {
-                    console.error("Error getting document:", error); // Enhanced error logging
+                    console.error("Error getting document:", error);
                 });
         }
-
-        // Cleanup (no specific cleanup for now, but this is where you'd handle it if needed)
-        // return () => {
-        //     // Cleanup tasks here
-        // }
-    }, [uid]); // Using destructured uid as a dependency
+    }, [uid]);
 
     const resendVerificationEmail = () => {
         if (currentUser) {
@@ -61,8 +55,7 @@ function Dashboard() {
                                 fontSize: "16px",
                                 cursor: "pointer",
                                 border: "none",
-                            }
-                        }
+                            }}
                             onClick={resendVerificationEmail}
                         >
                             here
