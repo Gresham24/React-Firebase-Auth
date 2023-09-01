@@ -1,5 +1,7 @@
 import React from "react";
-function Index() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+function SideBar() {
     return (
         <div className="sideBar">
             <div className="headerLogo">&lt;&lt; Logo IMG &gt;&gt;</div>
@@ -42,4 +44,4 @@ function Index() {
     );
 }
 
-export default Index;
+export default SideBar;
