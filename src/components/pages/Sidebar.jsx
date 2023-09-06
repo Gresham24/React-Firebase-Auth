@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
-function SideBar() {
+function Sidebar() {
     return (
         <div className="sideBar">
             <div className="headerLogo">&lt;&lt; Logo IMG &gt;&gt;</div>
             <ul className="navButtonContainer">
                 <li className="navItem">
                     <span id="dashboard-nav-btn">Dashboard</span>
+                    {/* <Route path="/dashboard" component={Dashboard} /> */}
                 </li>
                 <li className="navItem">
                     <span id="profile-nav-btn">Profile</span>
@@ -44,4 +46,4 @@ function SideBar() {
     );
 }
 
-export default SideBar;
+export default Sidebar;
