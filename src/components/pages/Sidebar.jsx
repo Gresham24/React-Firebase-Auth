@@ -1,24 +1,30 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
     return (
-        <div className="sideBar">
+        <aside className="sideBar">
             <div className="headerLogo">&lt;&lt; Logo IMG &gt;&gt;</div>
             <ul className="navButtonContainer">
                 <li className="navItem">
-                    <span id="dashboard-nav-btn">Dashboard</span>
-                    {/* <Route path="/dashboard" component={Dashboard} /> */}
+                    <Link id="dashboard-nav-btn" to="/dashboard">
+                        Dashboard
+                    </Link>
                 </li>
                 <li className="navItem">
-                    <span id="profile-nav-btn">Profile</span>
+                    <Link id="profile-nav-btn" to="/">
+                        Profile
+                    </Link>
                 </li>
                 <li className="navItem">
-                    <span id="reports-nav-btn">Reports</span>
+                    <Link id="reports-nav-btn" to="/">
+                        Reports
+                    </Link>
                 </li>
                 <li className="navItem">
-                    <span id="settings-nav-btn">Settings</span>
+                    <Link id="settings-nav-btn" to="/">
+                        Settings
+                    </Link>
                 </li>
             </ul>
             <div className="searchContainer ">
@@ -42,7 +48,7 @@ function Sidebar() {
                 </div>
                 <input className="searchBox" type="text" placeholder="Search" />
             </div>
-        </div>
+        </aside>
     );
 }
 

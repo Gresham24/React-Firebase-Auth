@@ -1,7 +1,11 @@
-:root {
+html, body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
 }
 
 h1,
@@ -39,11 +43,11 @@ button {
 .sideBar {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 6rem;
-    width: 12rem;
+    width: 10rem;
     background-color: #2d3748;
     padding: 2.5rem 0.5rem;
+    
 }
 
 .headerLogo {
@@ -60,15 +64,23 @@ button {
 }
 
 .navItem {
-    color: #718096;
     cursor: pointer;
-    padding: 0.85rem;
+    width: 100%;
 }
 
-.navItem:hover {
-    background-color: #a0aec0;
+.navItem a {
+    padding: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #718096;
+    display: block;
+}
+
+.navItem a:hover {
     color: black;
     background-color: #a0aec0;
+    padding: 0.85rem;
+    display: block;
     border: none;
     border-radius: 0.5rem;
 }

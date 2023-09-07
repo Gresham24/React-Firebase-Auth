@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/welcome" Component={Welcome} />
                 <Route path="/about" Component={About} />
                 <Route path="/userdetails" Component={UserDetails}></Route>
-                <Route path="/layout" Component={Sidebar}></Route>
+                <Route path="/homepage/*" Component={Sidebar}></Route>
             </Routes>
         </AuthProvider>
     </Router>
