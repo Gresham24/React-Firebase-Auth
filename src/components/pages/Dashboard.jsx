@@ -80,7 +80,6 @@ function Dashboard() {
             ) : (
                 <p>Loading user details...</p>
             )}
-            <LogoutButton />
         </>
     );
 }
