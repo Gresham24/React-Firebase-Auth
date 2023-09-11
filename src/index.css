@@ -38,6 +38,11 @@ button {
     margin-top: 15px;
 }
 
+.dashboardContainer {
+    background-color: #F3F4F6;
+    width: 100%;
+}
+
 /* ========== Sidebar ============== */
 
 .sideBar {
@@ -102,4 +107,12 @@ text-align: left;
 .logOutBtn:hover {
     cursor: pointer;
     color: #a0aec0;
+}
+
+
+/* ========== Homepage ============== */
+
+.homepageContainer {
+    display: flex;
+    /* flex-direction: row; */
 }

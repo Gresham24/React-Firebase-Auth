@@ -42,7 +42,7 @@ function Dashboard() {
     };
 
     return (
-        <>
+        <div className="dashboardContainer">
             {!emailVerified && (
                 <p>
                     <i>
@@ -80,7 +80,7 @@ function Dashboard() {
             ) : (
                 <p>Loading user details...</p>
             )}
-        </>
+        </div>
     );
 }
 
