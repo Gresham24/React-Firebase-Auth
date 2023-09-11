@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../auth/SignOut";
 
-function Homepage() {
+function Sidebar() {
     return (
         <aside className="sideBar">
             <div className="headerLogo">&lt;&lt; Logo IMG &gt;&gt;</div>
@@ -34,4 +34,4 @@ function Homepage() {
     );
 }
 
-export default Homepage;
+export default Sidebar;

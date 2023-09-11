@@ -10,7 +10,7 @@ import Dashboard from "./components/pages/Dashboard.jsx";
 import Welcome from "./components/onboarding/Welcome.jsx";
 import About from "./components/onboarding/About.jsx";
 import UserDetails from "./components/onboarding/UserDetails.jsx";
-import Homepage from "./components/pages/Homepage.jsx"
+import Sidebar from "./components/pages/Sidebar.jsx"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/welcome" Component={Welcome} />
                 <Route path="/about" Component={About} />
                 <Route path="/userdetails" Component={UserDetails}></Route>
-                <Route path="/homepage/*" Component={Homepage}></Route>
+                <Route path="/sidebar/*" Component={Sidebar}></Route>
             </Routes>
         </AuthProvider>
     </Router>
