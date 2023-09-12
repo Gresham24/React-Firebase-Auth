@@ -5,28 +5,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { sendEmailVerification } from "firebase/auth";
 
 function Dashboard() {
-    const { currentUser } = useContext(AuthContext); // use the useContext hook to access the AuthContext
-    const [userDetails, setUserDetails] = useState(null);
+    const { currentUser, loading } = useContext(AuthContext); 
 
-    const { email, emailVerified, uid } = currentUser || {}; // Destructuring with a fallback
-
-    useEffect(() => {
-        if (uid) {
-            // Fetch the user details from Firestore using the already initialized db
-            const docRef = doc(db, "Users", uid);
-            getDoc(docRef)
-                .then((docSnap) => {
-                    if (docSnap.exists()) {
-                        setUserDetails(docSnap.data());
-                    } else {
-                        console.log("No such document!");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error getting document:", error);
-                });
-        }
-    }, [uid]);
+    const { email, emailVerified, details } = currentUser || {};
 
     const resendVerificationEmail = () => {
         if (currentUser) {
@@ -64,20 +45,25 @@ function Dashboard() {
                 </p>
             )}
             <h1>Dashboard</h1>
-            {email ? ( // Using destructured email
-                <p>
-                    <strong>Email:</strong> {email}
-                </p>
-            ) : (
+
+            {loading ? (
                 <p>Loading user details...</p>
-            )}
-            {userDetails ? (
-                <p>
-                    <strong>Name:</strong> {userDetails.firstName}{" "}
-                    {userDetails.lastName}
-                </p>
+            ) : email ? (
+                <>
+                    <p>
+                        <strong>Email:</strong> {email}
+                    </p>
+                    {details ? (
+                        <p>
+                            <strong>Name:</strong> {details.firstName}{" "}
+                            {details.lastName}
+                        </p>
+                    ) : (
+                        <p>Loading user details...</p>
+                    )}
+                </>
             ) : (
-                <p>Loading user details...</p>
+                <p>No user logged in.</p>
             )}
         </div>
     );
