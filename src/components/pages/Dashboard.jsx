@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../auth/AuthContext";
-import LogoutButton from "../auth/SignOut";
 import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { sendEmailVerification } from "firebase/auth";
