@@ -7,51 +7,47 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user);
-
-            // Define the async function to fetch user data from Firestore
             const fetchUserData = async () => {
-                try {
-                    const docRef = doc(db, "Users", user.uid);
-                    const docSnap = await getDoc(docRef);
+                if (user) {
+                    console.log("User state: signed in as", user.email);
+                    try {
+                        const docRef = doc(db, "Users", user.uid);
+                        const docSnap = await getDoc(docRef);
 
-                    if (docSnap.exists()) {
-                        console.log(
-                            "User data from Firestore:",
-                            docSnap.data()
-                        );
-                        setCurrentUser({
-                            ...user,
-                            details: docSnap.data(),
-                        });
-                    } else {
-                        console.log(
-                            "Document doesn't exist for UID:",
-                            user.uid
-                        );
+                        if (docSnap.exists()) {
+                            setCurrentUser({
+                                ...user,
+                                details: docSnap.data(),
+                            });
+                        } else {
+                            console.log(
+                                "Document doesn't exist for UID:",
+                                user.uid
+                            );
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data: ", error);
                     }
-                } catch (error) {
-                    console.error("Error fetching user data: ", error);
+                } else {
+                    console.log("User state: signed out");
+                    setCurrentUser(null);
                 }
+                setLoading(false);
             };
 
-            if (user) {
-                fetchUserData();
-
-                console.log("User state: signed in as", user.email);
-            } else {
-                console.log("User state: signed out");
-            }
+            fetchUserData();
         });
 
         return unsubscribe;
     }, []);
 
     return (
-        <AuthContext.Provider value={{ currentUser }}>
+        <AuthContext.Provider value={{ currentUser, loading }}>
             {children}
         </AuthContext.Provider>
     );
