@@ -12,6 +12,7 @@ import About from "./components/onboarding/About.jsx";
 import UserDetails from "./components/onboarding/UserDetails.jsx";
 import Sidebar from "./components/pages/Sidebar.jsx";
 import Homepage from "./components/pages/Homepage.jsx";
+import Reports from "./components/pages/Reports.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/userdetails" Component={UserDetails}></Route>
                 <Route path="/sidebar/*" Component={Sidebar}></Route>
                 <Route path="/homepage/*" Component={Homepage}></Route>
+                <Route path="/reports/*" Component={Reports}></Route>
             </Routes>
         </AuthProvider>
     </Router>

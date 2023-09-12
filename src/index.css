@@ -49,7 +49,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 6rem;
-    width: 10rem;
+    width: 12rem;
     background-color: #2d3748;
     padding: 2.5rem 0.5rem;
     align-items: start;

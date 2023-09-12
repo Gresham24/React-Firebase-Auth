@@ -18,7 +18,7 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link id="reports-nav-btn" to="/">
+                    <Link id="reports-nav-btn" to="/reports">
                         Reports
                     </Link>
                 </li>
