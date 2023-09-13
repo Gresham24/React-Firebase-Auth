@@ -3,7 +3,7 @@ import { AuthContext } from "../auth/AuthContext";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs;
 
 const Reports = () => {
     const { currentUser, loading } = useContext(AuthContext);
