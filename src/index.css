@@ -116,3 +116,21 @@ text-align: left;
     display: flex;
     /* flex-direction: row; */
 }
+
+
+/* ========== Report ============== */
+
+.reportDetails  {
+border: solid 2px black;
+margin: 0 60px;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 10px;
+}
+
+
+.reportDetails button {
+    padding: 5px 40px;
+    
+}
