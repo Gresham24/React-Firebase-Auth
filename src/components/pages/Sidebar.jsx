@@ -5,17 +5,19 @@ import LogoutButton from "../auth/SignOut";
 function Sidebar() {
     return (
         <aside className="sideBar">
-            <div className="headerLogo">&lt;&lt; Logo IMG &gt;&gt;</div>
+            <div className="headerLogo">
+                <Link to="/homepage">
+                    <img src="/src/assets/logo.svg" alt="placeholder logo" />
+                </Link>
+            </div>
             <ul className="navButtonContainer">
                 <li className="navItem">
-                    <Link id="dashboard-nav-btn" to="/dashboard">
+                    <Link id="dashboard-nav-btn" to="/homepage">
                         Dashboard
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link id="profile-nav-btn" to="/">
-                        Profile
-                    </Link>
+                    <Link>Profile</Link>
                 </li>
                 <li className="navItem">
                     <Link id="reports-nav-btn" to="/reports">
@@ -23,13 +25,10 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link id="settings-nav-btn" to="/">
-                        Settings
-                    </Link>
+                    <Link>Settings</Link>
                 </li>
             </ul>
             <LogoutButton />
-
         </aside>
     );
 }
