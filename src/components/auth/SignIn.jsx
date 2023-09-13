@@ -23,7 +23,7 @@ const SignIn = () => {
                 setEmail("");
                 setPassword("");
                 // Continue with the login process
-                navigate("/dashboard");
+                navigate("/homepage");
             })
             .catch((error) => {
                 console.log(error.message);

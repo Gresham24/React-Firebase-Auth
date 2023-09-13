@@ -23,7 +23,7 @@ function UserDetails() {
 
         try {
             await setDoc(docRef, { contactNum }, { merge: true });
-            navigate("/dashboard");
+            navigate("/homepage");
         } catch (error) {
             alert("Error saving city: ", error);
         }

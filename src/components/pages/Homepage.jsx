@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
 
 function Homepage() {
-    return <div className="homepageContainer">
+    return <div className="page">
       <Sidebar />
       <Dashboard />
     </div>;

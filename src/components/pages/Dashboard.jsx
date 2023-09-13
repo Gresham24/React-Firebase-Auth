@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../auth/AuthContext";
-import { db } from "../../firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { sendEmailVerification } from "firebase/auth";
 
 function Dashboard() {
