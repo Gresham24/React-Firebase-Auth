@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../auth/AuthContext";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -71,7 +70,7 @@ const Reports = () => {
                     alignment: "center",
                 },
                 item: {
-                    margin: [0, 0, 0, 10], 
+                    margin: [0, 0, 0, 10],
                 },
             },
         };
