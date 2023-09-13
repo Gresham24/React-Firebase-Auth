@@ -110,7 +110,7 @@ const Reports = () => {
                         <strong>Last Name:</strong>{" "}
                         {currentUser.details.lastName}
                     </p>
-                    <button onClick={generatePDF}>Generate PDF</button>
+                    <button onClick={generatePDF}>Download</button>
                 </div>
             )}
         </div>
