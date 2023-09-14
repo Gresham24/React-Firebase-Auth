@@ -63,7 +63,7 @@ function Welcome() {
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                     />
-                    <button type="submit">Save</button>
+                    <button type="submit">Next</button>
                 </form>
             </div>
             <p>Page 1/3</p>

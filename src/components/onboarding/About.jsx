@@ -47,7 +47,7 @@ function About() {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
-                    <button type="submit">Save</button>
+                    <button type="submit">Next</button>
                 </form>
             </div>
             <p>Page 2/3</p>
