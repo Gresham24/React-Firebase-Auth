@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import LoadingComponent from "../common/LoadingComponent";
 
 export const AuthContext = createContext();
 
@@ -24,11 +25,6 @@ const AuthProvider = ({ children }) => {
                                 ...user,
                                 details: docSnap.data(),
                             });
-                        } else {
-                            console.log(
-                                "Document doesn't exist for UID:",
-                                user.uid
-                            );
                         }
                     } catch (error) {
                         console.error("Error fetching user data: ", error);
@@ -45,6 +41,10 @@ const AuthProvider = ({ children }) => {
 
         return unsubscribe;
     }, []);
+
+        if (loading) {
+            return <div><LoadingComponent/> </div>;
+        }
 
     return (
         <AuthContext.Provider value={{ currentUser, loading }}>
