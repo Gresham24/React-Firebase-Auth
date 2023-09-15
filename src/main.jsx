@@ -4,7 +4,7 @@ import Registration from "./components/auth/Registration.jsx";
 import SignIn from "./components/auth/SignIn.jsx";
 import AuthProvider from "./components/auth/AuthContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Auth from "./components/pages/Auth.jsx";
+import Landing from "./components/pages/Landing.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
 import Dashboard from "./components/pages/Dashboard.jsx";
 import Welcome from "./components/onboarding/Welcome.jsx";
@@ -13,22 +13,80 @@ import UserDetails from "./components/onboarding/UserDetails.jsx";
 import Sidebar from "./components/pages/Sidebar.jsx";
 import Homepage from "./components/pages/Homepage.jsx";
 import Reports from "./components/pages/Reports.jsx";
+import PrivateRoutes from "./utilities/PrivateRoutes.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
         <AuthProvider>
             <Routes>
-                <Route exact path="/" Component={Auth} />
-                <Route path="/registration" Component={Registration} />
-                <Route path="/signin" Component={SignIn} />
-                <Route path="/forgotpassword" Component={ForgotPassword} />
-                <Route path="/dashboard" Component={Dashboard} />
-                <Route path="/welcome" Component={Welcome} />
-                <Route path="/about" Component={About} />
-                <Route path="/userdetails" Component={UserDetails}></Route>
-                <Route path="/sidebar/*" Component={Sidebar}></Route>
-                <Route path="/homepage/*" Component={Homepage}></Route>
-                <Route path="/reports/*" Component={Reports}></Route>
+                <Route path="/" element={<Landing />} />
+                <Route path="/registration" element={<Registration />} />
+                <Route path="/signin" element={<SignIn />} />
+
+                <Route
+                    path="/forgotpassword"
+                    element={
+                        <PrivateRoutes>
+                            <ForgotPassword />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <PrivateRoutes>
+                            <Dashboard />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/welcome"
+                    element={
+                        <PrivateRoutes>
+                            <Welcome />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/about"
+                    element={
+                        <PrivateRoutes>
+                            <About />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/userdetails"
+                    element={
+                        <PrivateRoutes>
+                            <UserDetails />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/sidebar/*"
+                    element={
+                        <PrivateRoutes>
+                            <Sidebar />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/homepage/*"
+                    element={
+                        <PrivateRoutes>
+                            <Homepage />
+                        </PrivateRoutes>
+                    }
+                />
+                <Route
+                    path="/reports/*"
+                    element={
+                        <PrivateRoutes>
+                            <Reports />
+                        </PrivateRoutes>
+                    }
+                />
             </Routes>
         </AuthProvider>
     </Router>
