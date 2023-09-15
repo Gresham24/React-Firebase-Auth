@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [justSignedIn, setJustSignedIn] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -13,17 +14,14 @@ const SignIn = () => {
 
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredentials) => {
-                if (userCredentials.user.emailVerified) {
-                    console.log(userCredentials);
+                if (userCredentials) {
+                    setEmail("");
+                    setPassword("");
+                    setJustSignedIn(true);
+                    navigate("/homepage", { state: { justSignedIn: true } });
                 } else {
                     console.log("Email is not verified");
                 }
-            })
-            .then(() => {
-                setEmail("");
-                setPassword("");
-                // Continue with the login process
-                navigate("/homepage");
             })
             .catch((error) => {
                 console.log(error.message);
