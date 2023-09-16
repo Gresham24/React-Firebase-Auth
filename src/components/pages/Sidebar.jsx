@@ -17,7 +17,7 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link>Profile</Link>
+                    <Link to="/packages">Packages</Link>
                 </li>
                 <li className="navItem">
                     <Link id="reports-nav-btn" to="/reports">
