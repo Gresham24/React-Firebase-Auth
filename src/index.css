@@ -27,7 +27,7 @@ p {
 .loadingSpinner {
     width: 50px;
     height: 50px;
-    border: 10px solid #f3f3f3; 
+    border: 10px solid #f3f3f3;
     border-top: 10px solid #383636;
     border-radius: 50%;
     animation: spinner 1.5s linear infinite;
@@ -39,6 +39,8 @@ p {
     align-items: center;
     height: 350px;
 }
+
+/* ========== Forms ============== */
 
 .registrationContainer,
 .signInContainer,
@@ -65,7 +67,11 @@ button {
     margin-top: 15px;
 }
 
-.dashboardContainer {
+/* ========== Pages ============== */
+
+.dashboardContainer,
+.packagesContainer,
+.reportsContainer {
     width: 100%;
 }
 
@@ -117,6 +123,16 @@ button {
     border-radius: 0.5rem;
 }
 
+.selected {
+    color: black;
+    background-color: #71809663;
+    border-radius: 0.5rem;
+}
+
+.selected a {
+    color: black;
+}
+
 .logOutBtn {
     border: none;
     background-color: transparent;
@@ -155,6 +171,13 @@ button {
     padding: 5px 40px;
 }
 
-.reportsContainer {
+/* ========== Packages ============== */
+.packagesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.packageForm {
     width: 100%;
+    max-width: 50%;
 }

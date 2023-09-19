@@ -1,31 +1,48 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "../auth/SignOut";
 
 function Sidebar() {
     return (
         <aside className="sideBar">
             <div className="headerLogo">
-                <Link to="/homepage">
+                <NavLink to="/homepage">
                     <img src="/src/assets/logo.svg" alt="placeholder logo" />
-                </Link>
+                </NavLink>
             </div>
             <ul className="navButtonContainer">
                 <li className="navItem">
-                    <Link id="dashboard-nav-btn" to="/homepage">
+                    <NavLink
+                        to="/homepage"
+                        className={({ isActive }) =>
+                            isActive ? "selected" : ""
+                        }
+                    >
                         Dashboard
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="navItem">
-                    <Link to="/packages">Packages</Link>
+                    <NavLink
+                        to="/packages"
+                        className={({ isActive }) =>
+                            isActive ? "selected" : ""
+                        }
+                    >
+                        Packages
+                    </NavLink>
                 </li>
                 <li className="navItem">
-                    <Link id="reports-nav-btn" to="/reports">
+                    <NavLink
+                        to="/reports"
+                        className={({ isActive }) =>
+                            isActive ? "selected" : ""
+                        }
+                    >
                         Reports
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="navItem">
-                    <Link>Settings</Link>
+                    <NavLink>Settings</NavLink>
                 </li>
             </ul>
             <LogoutButton />
