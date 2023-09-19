@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
+import { doc, collection, setDoc } from "firebase/firestore";
+
 
 export function AddPackage() {
     const [PackageType, setPackageType] = useState();
@@ -25,7 +28,7 @@ export function AddPackage() {
                             name="packageName"
                             required
                         />
-                        <label htmlFor="packagePrice">Package Price</label>
+                        <label htmlFor="packagePrice">Package Price (R)</label>
                         <input
                             type="number"
                             id="packagePrice"
@@ -61,8 +64,8 @@ export function AddPackage() {
                             required
                         />
                     </form>
-                    <div className="buttonContainer">
-                        <button type="submit">Cancel</button>
+                    <div className="footerButtonWrapper">
+                        <Link to="/packages">Cancel</Link>
                         <button type="submit">Save</button>
                     </div>
                 </div>
