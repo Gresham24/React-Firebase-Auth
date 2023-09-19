@@ -71,7 +71,8 @@ button {
 
 .dashboardContainer,
 .packagesContainer,
-.reportsContainer {
+.reportsContainer,
+.addPackagesContainer, .pageContent {
     width: 100%;
 }
 
@@ -172,12 +173,21 @@ button {
 }
 
 /* ========== Packages ============== */
-.packagesContainer {
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.packagesContainer,.addPackagesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
-.packageForm {
+.addPackageFormContainer {
     width: 100%;
     max-width: 50%;
 }

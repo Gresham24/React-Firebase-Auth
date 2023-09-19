@@ -14,7 +14,9 @@ import Sidebar from "./components/pages/Sidebar.jsx";
 import Homepage from "./components/pages/Homepage.jsx";
 import Reports from "./components/pages/Reports.jsx";
 import PrivateRoutes from "./utilities/PrivateRoutes.jsx";
+import AddPackage  from "./components/pages/AddPackage.jsx";
 import Packages from "./components/pages/Packages.jsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Router>
@@ -89,6 +91,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                     }
                 />
                 <Route
+                    path="/addpackage/*"
+                    element={
+                        <PrivateRoutes>
+                            <AddPackage />
+                        </PrivateRoutes>
+                    }
+                />
+
+            <Route
                     path="/packages/*"
                     element={
                         <PrivateRoutes>
