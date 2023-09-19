@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 
 export function AddPackage() {
-    const [selectedValue, setSelectedValue] = useState();
+    const [PackageType, setPackageType] = useState();
+    const [PackageName, setPackageName] = useState("");
+    const [PackagePrice, setPackagePrice] = useState("");
+    const [PackageStartDate, setPackageStartDate] = useState("");
+    const [PackageEndDate, setPackageEndDate] = useState("");
 
     const handleChange = (e) => {
-        setSelectedValue(e.target.value);
+        setPackageType(e.target.value);
     };
     return (
         <div className="page">
@@ -32,7 +36,7 @@ export function AddPackage() {
                         <label htmlFor="packageType">Package Type:</label>
                         <select
                             id="packageType"
-                            value={selectedValue}
+                            value={PackageType}
                             onChange={handleChange}
                             required
                         >
