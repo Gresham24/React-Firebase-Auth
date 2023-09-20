@@ -1,33 +1,85 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
-import { doc, collection, setDoc } from "firebase/firestore";
+import { doc, collection, setDoc, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { AuthContext } from "../auth/AuthContext";
 
-export function AddPackage() {
-    const [PackageType, setPackageType] = useState("");
-    const [PackageName, setPackageName] = useState("");
-    const [PackagePrice, setPackagePrice] = useState("");
-    const [PackageStartDate, setPackageStartDate] = useState("");
-    const [PackageEndDate, setPackageEndDate] = useState("");
+/* 
+Bugs to fix:
+- package not 
+*/
+
+function AddPackage() {
+    const { currentUser } = useContext(AuthContext);
+    const [packageType, setPackageType] = useState("");
+    const [packageName, setPackageName] = useState("");
+    const [packagePrice, setPackagePrice] = useState("");
+    const [packageStartDate, setPackageStartDate] = useState("");
+    const [packageEndDate, setPackageEndDate] = useState("");
 
     const handleChange = (e) => {
-        setPackageType(e.target.value);
+                const { name, value } = e.target;
+
+                switch (name) {
+                    case "packageName":
+                        setPackageName(value);
+                        break;
+                    case "packagePrice":
+                        setPackagePrice(value);
+                        break;
+                    case "packageStartDate":
+                        setPackageStartDate(value);
+                        break;
+                    case "packageEndDate":
+                        setPackageEndDate(value);
+                        break;
+                    case "packageType":
+                        setPackageType(value);
+                        break;
+                    default:
+                        break;
+                }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const PackageName = e.target.PackageName.value;
-        const PackagePrice = e.target.PackagePrice.value;
-        const StartDate = e.target.StartDate.value;
-        const EndDate = e.target.EndDate ? e.target.EndDate.value : null;
+        const packageName = e.target.packageName.value;
+        const packagePrice = e.target.packagePrice.value;
+        const packageStartDate = e.target.packageStartDate.value;
+        const packageEndDate = e.target.packageEndDate
+            ? e.target.packageEndDate.value
+            : null;
 
-        // Add to Firestore (or any other logic you want)
+
+                    const packageData = {
+                        packageName: packageName,
+                        packagePrice: packagePrice,
+                        packageType: packageType,
+                        packageStartDate: packageStartDate,
+                        packageEndDate: packageEndDate,
+                    };
+
+        // Inner asynchronous function
+        const saveToFirestore = async () => {
+            const userID = currentUser.uid;
+            const userRef = doc(db, "Users", userID);
+            const packagesCollectionRef = collection(userRef, "Packages");
+
+            // Add the package data to the Packages subcollection
+            await addDoc(packagesCollectionRef, packageData);
+        };
+
+        // Call the inner function and handle possible errors
+        saveToFirestore().catch((error) => {
+            console.error("Error adding document: ", error);
+            // You can also show some user-friendly error message if needed
+        });
+
+        e.target.reset();
     };
 
-    // e.target.reset()
-
-    
     return (
         <div className="page">
             <Sidebar />
@@ -40,6 +92,8 @@ export function AddPackage() {
                             type="text"
                             id="packageName"
                             name="packageName"
+                            value={packageName}
+                            onChange={handleChange}
                             required
                         />
                         <label htmlFor="packagePrice">Package Price (R)</label>
@@ -48,12 +102,14 @@ export function AddPackage() {
                             id="packagePrice"
                             name="packagePrice"
                             placeholder="R0.00"
+                            value={packagePrice}
+                            onChange={handleChange}
                             required
                         />
                         <label htmlFor="packageType">Package Type:</label>
                         <select
                             id="packageType"
-                            value={PackageType}
+                            value={packageType}
                             onChange={handleChange}
                             required
                         >
@@ -62,34 +118,38 @@ export function AddPackage() {
                             <option value="PromoPackage">Promotion</option>
                         </select>
 
-                        <label htmlFor="startDate">Start Date</label>
+                        <label htmlFor="packageStartDate">Start Date</label>
                         <input
                             type="date"
-                            id="startDate"
-                            name="startDate"
+                            id="packageStartDate"
+                            name="packageStartDate"
+                            value={packageStartDate}
+                            onChange={handleChange}
                             required
                         />
 
-                        {PackageType === "PromoPackage" && (
+                        {packageType === "PromoPackage" && (
                             <>
-                                <label htmlFor="endDate">End Date</label>
+                                <label htmlFor="packageEndDate">End Date</label>
                                 <input
                                     type="date"
-                                    id="endDate"
-                                    name="endDate"
+                                    id="packageEndDate"
+                                    name="packageEndDate"
+                                    value={packageEndDate}
+                                    onChange={handleChange}
                                     required={
-                                        PackageType === "PromoPackage"
+                                        packageType === "PromoPackage"
                                             ? true
                                             : false
                                     }
                                 />
                             </>
                         )}
+                        <div className="footerButtonWrapper">
+                            <Link to="/packages">Cancel</Link>
+                            <button type="submit">Save</button>
+                        </div>
                     </form>
-                    <div className="footerButtonWrapper">
-                        <Link to="/packages">Cancel</Link>
-                        <button type="submit">Save</button>
-                    </div>
                 </div>
             </div>
         </div>

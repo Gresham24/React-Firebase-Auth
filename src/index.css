@@ -193,15 +193,13 @@ button {
     max-width: 50%;
 }
 
-.addPackageFormContainer form {
-    margin-bottom: 20px;
-}
-
 .footerButtonWrapper {
     display: flex;
     flex-direction: row;
     align-items: end;
     gap: 20px;
+    margin-top: 20px;
+
 }
 
 .footerButtonWrapper a,
