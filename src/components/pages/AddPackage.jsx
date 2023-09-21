@@ -136,6 +136,7 @@ function AddPackage() {
                                     type="date"
                                     id="packageEndDate"
                                     name="packageEndDate"
+                                    min={packageStartDate}
                                     value={packageEndDate}
                                     onChange={handleChange}
                                     required={
