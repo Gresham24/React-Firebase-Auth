@@ -5,11 +5,6 @@ import { doc, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../auth/AuthContext";
 
-/* 
-Bugs to fix:
-- package not 
-*/
-
 function AddPackage() {
     const { currentUser } = useContext(AuthContext);
     const [packageType, setPackageType] = useState("");
@@ -19,27 +14,26 @@ function AddPackage() {
     const [packageEndDate, setPackageEndDate] = useState("");
 
     const handleChange = (e) => {
-                const { name, value } = e.target;
-
-                switch (name) {
-                    case "packageName":
-                        setPackageName(value);
-                        break;
-                    case "packagePrice":
-                        setPackagePrice(value);
-                        break;
-                    case "packageStartDate":
-                        setPackageStartDate(value);
-                        break;
-                    case "packageEndDate":
-                        setPackageEndDate(value);
-                        break;
-                    case "packageType":
-                        setPackageType(value);
-                        break;
-                    default:
-                        break;
-                }
+        const { name, value } = e.target;
+        switch (name) {
+            case "packageName":
+                setPackageName(value);
+                break;
+            case "packagePrice":
+                setPackagePrice(value);
+                break;
+            case "packageStartDate":
+                setPackageStartDate(value);
+                break;
+            case "packageEndDate":
+                setPackageEndDate(value);
+                break;
+            case "packageType":
+                setPackageType(value);
+                break;
+            default:
+                break;
+        }
     };
 
     const handleSubmit = (e) => {
@@ -52,14 +46,13 @@ function AddPackage() {
             ? e.target.packageEndDate.value
             : null;
 
-
-                    const packageData = {
-                        packageName: packageName,
-                        packagePrice: packagePrice,
-                        packageType: packageType,
-                        packageStartDate: packageStartDate,
-                        packageEndDate: packageEndDate,
-                    };
+        const packageData = {
+            packageName: packageName,
+            packagePrice: packagePrice,
+            packageType: packageType,
+            packageStartDate: packageStartDate,
+            packageEndDate: packageEndDate,
+        };
 
         // Inner asynchronous function
         const saveToFirestore = async () => {
@@ -109,13 +102,14 @@ function AddPackage() {
                         <label htmlFor="packageType">Package Type:</label>
                         <select
                             id="packageType"
+                            name="packageType"
                             value={packageType}
                             onChange={handleChange}
                             required
                         >
-                            <option value=" ">Choose a package</option>
-                            <option value="StandPackage">Standard</option>
-                            <option value="PromoPackage">Promotion</option>
+                            <option value="">Choose a package</option>
+                            <option value="Standard Package">Standard</option>
+                            <option value="Promotion Package">Promotion</option>
                         </select>
 
                         <label htmlFor="packageStartDate">Start Date</label>
@@ -127,8 +121,7 @@ function AddPackage() {
                             onChange={handleChange}
                             required
                         />
-
-                        {packageType === "PromoPackage" && (
+                        {packageType === "promoPackageType" && (
                             <>
                                 <label htmlFor="packageEndDate">End Date</label>
                                 <input
@@ -138,7 +131,7 @@ function AddPackage() {
                                     value={packageEndDate}
                                     onChange={handleChange}
                                     required={
-                                        packageType === "PromoPackage"
+                                        packageType === "promoPackageType"
                                             ? true
                                             : false
                                     }
