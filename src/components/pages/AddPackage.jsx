@@ -36,6 +36,9 @@ function AddPackage() {
         }
     };
 
+    // Get the current date for start date checker
+    const today = new Date().toISOString().split("T")[0];
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -68,9 +71,8 @@ function AddPackage() {
             setPackagePrice("");
             setPackageStartDate("");
             setPackageEndDate("");
-           
 
-            alert("Package added successfully!")
+            alert("Package added successfully!");
         };
 
         // Call the inner function and handle possible errors
@@ -78,7 +80,6 @@ function AddPackage() {
             console.error("Error adding document: ", error);
             // You can also show some user-friendly error message if needed
         });
-
     };
 
     return (
@@ -125,6 +126,7 @@ function AddPackage() {
                             type="date"
                             id="packageStartDate"
                             name="packageStartDate"
+                            min={today}
                             value={packageStartDate}
                             onChange={handleChange}
                             required
