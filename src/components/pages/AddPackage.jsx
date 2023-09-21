@@ -62,6 +62,15 @@ function AddPackage() {
 
             // Add the package data to the Packages subcollection
             await addDoc(packagesCollectionRef, packageData);
+
+            // Reset the state variables
+            setPackageName("");
+            setPackagePrice("");
+            setPackageStartDate("");
+            setPackageEndDate("");
+           
+
+            alert("Package added successfully!")
         };
 
         // Call the inner function and handle possible errors
@@ -70,7 +79,6 @@ function AddPackage() {
             // You can also show some user-friendly error message if needed
         });
 
-        e.target.reset();
     };
 
     return (
@@ -121,7 +129,7 @@ function AddPackage() {
                             onChange={handleChange}
                             required
                         />
-                        {packageType === "promoPackageType" && (
+                        {packageType === "Promotion Package" && (
                             <>
                                 <label htmlFor="packageEndDate">End Date</label>
                                 <input
@@ -131,7 +139,7 @@ function AddPackage() {
                                     value={packageEndDate}
                                     onChange={handleChange}
                                     required={
-                                        packageType === "promoPackageType"
+                                        packageType === "Promotion Package"
                                             ? true
                                             : false
                                     }
