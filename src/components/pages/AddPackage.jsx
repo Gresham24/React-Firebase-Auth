@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { doc, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { AuthContext } from "../auth/AuthContext";
@@ -35,6 +35,29 @@ function AddPackage() {
                 break;
         }
     };
+
+    const navigateTo = useNavigate()
+
+    const handleCancel = () => {
+        // Check if any of the form fields are not empty
+        if (
+            packageName ||
+            packagePrice ||
+            packageStartDate ||
+            packageEndDate ||
+            packageType
+        ) {
+            const userConfirmed = window.confirm(
+                "Are you sure you want to cancel? Changes that you made will not be saved."
+            );
+
+            if (userConfirmed) {
+                navigateTo("/packages"); 
+            }
+        } else {
+            navigateTo("/packages"); 
+        }
+    }
 
     // Get the current date for start date checker
     const today = new Date().toISOString().split("T")[0];
@@ -150,7 +173,8 @@ function AddPackage() {
                             </>
                         )}
                         <div className="footerButtonWrapper">
-                            <Link to="/packages">Cancel</Link>
+                            <button type="button" onClick={handleCancel}>Cancel</button>
+                            {/* <Link to="/packages">Cancel</Link> */}
                             <button type="submit">Save</button>
                         </div>
                     </form>
