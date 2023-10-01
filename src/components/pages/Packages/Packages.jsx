@@ -1,17 +1,17 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../Sidebar";
 import PackagesTable from "./PackagesTable";
 
 function Packages() {
     return (
         <div className="page">
-            <Sidebar/>
+            <Sidebar />
             <div className="pageContent">
                 <div className="header">
                     <h1>Packages</h1>
-                    <PackagesTable/>
+                    <PackagesTable />
 
                     <Link className="addPackageBtn" to="/packages/addpackage">
                         Add package

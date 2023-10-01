@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { AuthContext } from "../../auth/AuthContext";
-import Sidebar from "../Sidebar";
+import Sidebar from "../../Sidebar";
 
 function AddPackage() {
     const { currentUser } = useContext(AuthContext);
@@ -66,7 +66,6 @@ function AddPackage() {
         packageEndDate,
         packageType,
     ]);
-
 
     const handleCancel = () => {
         // Check if any of the form fields are not empty
@@ -143,74 +142,66 @@ function AddPackage() {
                 <h1>Add Package</h1>
                 <div className="addPackageFormContainer">
                     <form className="packageForm" onSubmit={handleSubmit}>
-                            <label htmlFor="packageName">Package Name</label>
-                            <input
-                                type="text"
-                                id="packageName"
-                                name="packageName"
-                                value={packageName}
-                                onChange={handleChange}
-                                required
-                            />
-                            <label htmlFor="packagePrice">
-                                Package Price (R)
-                            </label>
-                            <input
-                                type="number"
-                                id="packagePrice"
-                                name="packagePrice"
-                                placeholder="R0.00"
-                                value={packagePrice}
-                                onChange={handleChange}
-                                required
-                            />
-                            <label htmlFor="packageType">Package Type:</label>
-                            <select
-                                id="packageType"
-                                name="packageType"
-                                value={packageType}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="">Choose a package</option>
-                                <option value="Standard Package">
-                                    Standard
-                                </option>
-                                <option value="Promotion Package">
-                                    Promotion
-                                </option>
-                            </select>
+                        <label htmlFor="packageName">Package Name</label>
+                        <input
+                            type="text"
+                            id="packageName"
+                            name="packageName"
+                            value={packageName}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label htmlFor="packagePrice">Package Price (R)</label>
+                        <input
+                            type="number"
+                            id="packagePrice"
+                            name="packagePrice"
+                            placeholder="R0.00"
+                            value={packagePrice}
+                            onChange={handleChange}
+                            required
+                        />
+                        <label htmlFor="packageType">Package Type:</label>
+                        <select
+                            id="packageType"
+                            name="packageType"
+                            value={packageType}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Choose a package</option>
+                            <option value="Standard Package">Standard</option>
+                            <option value="Promotion Package">Promotion</option>
+                        </select>
 
-                            <label htmlFor="packageStartDate">Start Date</label>
-                            <input
-                                type="date"
-                                id="packageStartDate"
-                                name="packageStartDate"
-                                min={today}
-                                value={packageStartDate}
-                                onChange={handleChange}
-                                required
-                            />
-                            {packageType === "Promotion Package" && (
-                                <>
-                                    <label htmlFor="packageEndDate">
-                                        End Date
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="packageEndDate"
-                                        name="packageEndDate"
-                                        min={packageStartDate}
-                                        value={packageEndDate}
-                                        onChange={handleChange}
-                                        required={
-                                            packageType === "Promotion Package"
-                                                ? true
-                                                : false
-                                        }
-                                    />
-                                </>
-                            )}
+                        <label htmlFor="packageStartDate">Start Date</label>
+                        <input
+                            type="date"
+                            id="packageStartDate"
+                            name="packageStartDate"
+                            min={today}
+                            value={packageStartDate}
+                            onChange={handleChange}
+                            required
+                        />
+                        {packageType === "Promotion Package" && (
+                            <>
+                                <label htmlFor="packageEndDate">End Date</label>
+                                <input
+                                    type="date"
+                                    id="packageEndDate"
+                                    name="packageEndDate"
+                                    min={packageStartDate}
+                                    value={packageEndDate}
+                                    onChange={handleChange}
+                                    required={
+                                        packageType === "Promotion Package"
+                                            ? true
+                                            : false
+                                    }
+                                />
+                            </>
+                        )}
                         <div className="footerButtonWrapper">
                             <button
                                 className="cancelBtn"

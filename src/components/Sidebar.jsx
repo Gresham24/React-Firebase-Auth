@@ -1,6 +1,7 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import LogoutButton from "../auth/SignOut";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "./auth/SignOut";
+import "./Sidebar.css"
 
 function Sidebar() {
     return (

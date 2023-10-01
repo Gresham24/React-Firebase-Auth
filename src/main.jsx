@@ -10,7 +10,7 @@ import Dashboard from "./components/pages/Dashboard/Dashboard.jsx";
 import Welcome from "./components/onboarding/Welcome.jsx";
 import About from "./components/onboarding/About.jsx";
 import UserDetails from "./components/onboarding/UserDetails.jsx";
-import Sidebar from "./components/pages/Sidebar.jsx";
+import Sidebar from "./components/Sidebar.jsx";
 import Homepage from "./components/pages/Homepage/Homepage.jsx";
 import Reports from "./components/pages/Reports/Reports.jsx";
 import PrivateRoutes from "./utilities/PrivateRoutes.jsx";

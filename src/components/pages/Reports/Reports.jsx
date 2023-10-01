@@ -1,16 +1,14 @@
-import "./Reports.css"
+import "./Reports.css";
 import React, { useContext } from "react";
 import { AuthContext } from "../../auth/AuthContext";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import pdfMake from "pdfmake/build/pdfmake";
-import Sidebar from "../Sidebar";
-
+import Sidebar from "../../Sidebar";
 
 pdfMake.vfs = pdfFonts.pdfMake ? pdfFonts.pdfMake.vfs : pdfFonts.vfs;
 
 const Reports = () => {
     const { currentUser, loading } = useContext(AuthContext);
-
 
     const generatePDF = () => {
         const details = currentUser.details;

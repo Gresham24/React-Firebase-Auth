@@ -4,13 +4,6 @@ import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { AuthContext } from "../auth/AuthContext";
 
-/* 
-To Do:
-- add restriction/logic that only users who are signing in for the first time should be able to access onboarding pages
-- 
-
-*/
-
 function Welcome() {
     // Access the current user from the `AuthContext`
     const { currentUser } = useContext(AuthContext);
