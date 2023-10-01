@@ -1,9 +1,10 @@
+import "./Dashboard.css"
 import React, { useContext } from "react";
-import { AuthContext } from "../auth/AuthContext";
+import { AuthContext } from "../../auth/AuthContext";
 import { sendEmailVerification } from "firebase/auth";
 
 function Dashboard() {
-    const { currentUser, loading } = useContext(AuthContext); 
+    const { currentUser, loading } = useContext(AuthContext);
 
     const { email, emailVerified, details } = currentUser || {};
 

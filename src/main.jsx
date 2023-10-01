@@ -6,7 +6,7 @@ import AuthProvider from "./components/auth/AuthContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./components/pages/Landing.jsx";
 import ForgotPassword from "./components/auth/ForgotPassword.jsx";
-import Dashboard from "./components/pages/Dashboard.jsx";
+import Dashboard from "./components/pages/Dashboard/Dashboard.jsx";
 import Welcome from "./components/onboarding/Welcome.jsx";
 import About from "./components/onboarding/About.jsx";
 import UserDetails from "./components/onboarding/UserDetails.jsx";
