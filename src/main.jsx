@@ -12,7 +12,7 @@ import About from "./components/onboarding/About.jsx";
 import UserDetails from "./components/onboarding/UserDetails.jsx";
 import Sidebar from "./components/pages/Sidebar.jsx";
 import Homepage from "./components/pages/Homepage/Homepage.jsx";
-import Reports from "./components/pages/Reports.jsx";
+import Reports from "./components/pages/Reports/Reports.jsx";
 import PrivateRoutes from "./utilities/PrivateRoutes.jsx";
 import AddPackage from "./components/pages/Packages/AddPackage.jsx";
 import Packages from "./components/pages/Packages/Packages.jsx";
