@@ -6,11 +6,16 @@
 }
 
 .packagesContainer,
+.addPackagesContainer,
+.pageContent {
+    width: 100%;
+}
+
+.packagesContainer,
 .addPackagesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 .addPackageFormContainer {
     width: 100%;

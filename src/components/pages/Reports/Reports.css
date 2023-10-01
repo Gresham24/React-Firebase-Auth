@@ -11,3 +11,7 @@
 .reportDetails button {
     padding: 5px 40px;
 }
+
+.reportsContainer{
+    width: 100%;
+}

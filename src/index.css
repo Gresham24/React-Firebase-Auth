@@ -14,10 +14,6 @@ p {
     text-align: center;
 }
 
-/* ========== Loading Spinner ============== */
-
-
-
 /* ========== Forms ============== */
 
 .registrationContainer,
@@ -44,24 +40,3 @@ form label,
 button {
     margin-top: 15px;
 }
-
-/* ========== Pages ============== */
-
-.reportsContainer,
-.addPackagesContainer,
-.pageContent {
-    width: 100%;
-}
-
-/* ========== Sidebar ============== */
-
-
-/* ========== Homepage ============== */
-
-
-
-/* ========== Report ============== */
-
-
-
-/* ========== Packages ============== */
