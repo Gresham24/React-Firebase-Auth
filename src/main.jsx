@@ -24,15 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="/" element={<Landing />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/signin" element={<SignIn />} />
-
-                <Route
-                    path="/forgotpassword"
-                    element={
-                        <PrivateRoutes>
-                            <ForgotPassword />
-                        </PrivateRoutes>
-                    }
-                />
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
                 <Route
                     path="/dashboard"
                     element={
