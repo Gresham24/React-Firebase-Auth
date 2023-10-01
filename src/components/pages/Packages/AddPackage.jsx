@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, collection, setDoc, addDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
@@ -37,6 +37,36 @@ function AddPackage() {
     };
 
     const navigateTo = useNavigate();
+
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+            if (
+                packageName ||
+                packagePrice ||
+                packageStartDate ||
+                packageEndDate ||
+                packageType
+            ) {
+                e.preventDefault();
+                e.returnValue =
+                    "Changes that you made will not be saved. Are you sure you want to leave?";
+            }
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Cleanup listener when component is unmounted
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, [
+        packageName,
+        packagePrice,
+        packageStartDate,
+        packageEndDate,
+        packageType,
+    ]);
+
 
     const handleCancel = () => {
         // Check if any of the form fields are not empty
@@ -96,6 +126,7 @@ function AddPackage() {
             setPackageEndDate("");
 
             alert("Package added successfully!");
+            navigateTo("/packages");
         };
 
         // Call the inner function and handle possible errors
