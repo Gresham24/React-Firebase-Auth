@@ -13,7 +13,7 @@ function Packages() {
                     <h1>Packages</h1>
                     <PackagesTable/>
 
-                    <Link className="addPackageBtn" to="/addpackage">
+                    <Link className="addPackageBtn" to="/packages/addpackage">
                         Add package
                     </Link>
                 </div>

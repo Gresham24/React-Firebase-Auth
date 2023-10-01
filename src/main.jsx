@@ -90,7 +90,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                     }
                 />
                 <Route
-                    path="/addpackage/*"
+                    path="/packages/addpackage/*"
                     element={
                         <PrivateRoutes>
                             <AddPackage />
