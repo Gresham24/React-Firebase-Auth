@@ -1,6 +1,7 @@
+import "./Homepage.css"
 import React from "react";
-import Sidebar from "./Sidebar";
-import Dashboard from "./Dashboard/Dashboard";
+import Sidebar from "../Sidebar";
+import Dashboard from "../Dashboard/Dashboard";
 
 function Homepage() {
     return (
