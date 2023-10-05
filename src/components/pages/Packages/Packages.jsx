@@ -2,7 +2,7 @@ import React from "react";
 import "./Packages.css"
 import { Link } from "react-router-dom";
 import Sidebar from "../../Sidebar";
-import PackagesTable from "./PackagesTable";
+
 
 function Packages() {
     return (
@@ -11,8 +11,6 @@ function Packages() {
             <div className="pageContent">
                 <div className="header">
                     <h1>Packages</h1>
-                    <PackagesTable />
-
                     <Link className="addPackageBtn" to="/packages/addpackage">
                         Add package
                     </Link>
