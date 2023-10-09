@@ -7,7 +7,7 @@ function Dashboard() {
     const { currentUser, loading } = useContext(AuthContext);
 
     const { email, emailVerified, details } = currentUser || {};
-
+    
     const resendVerificationEmail = () => {
         if (currentUser) {
             sendEmailVerification(currentUser)
